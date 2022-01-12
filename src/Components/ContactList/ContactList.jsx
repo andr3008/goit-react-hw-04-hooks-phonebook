@@ -1,25 +1,22 @@
 import PropTypes from "prop-types";
-import { Component } from "react";
+import React from "react";
 import { Ul, Li, Button, P } from "./ContactList.styled";
 
-class ContactList extends Component {
-	render() {
-		const { contacts, onDeleteContact } = this.props;
-		return (
-			<Ul>
-				{contacts.map(({ id, name, number }) => (
-					<Li key={id}>
-						<P>
-							{name}: {number}
-						</P>
-						<Button type="button" onClick={() => onDeleteContact(id)}>
-							Delete
-						</Button>
-					</Li>
-				))}
-			</Ul>
-		);
-	}
+export default function ContactList({ contacts, onDeleteContact }) {
+	return (
+		<Ul>
+			{contacts.map(({ id, name, number }) => (
+				<Li key={id}>
+					<P>
+						{name}: {number}
+					</P>
+					<Button type="button" onClick={() => onDeleteContact(id)}>
+						Delete
+					</Button>
+				</Li>
+			))}
+		</Ul>
+	);
 }
 ContactList.propTypes = {
 	contacts: PropTypes.arrayOf(
@@ -31,4 +28,3 @@ ContactList.propTypes = {
 	),
 	onDeleteContact: PropTypes.func.isRequired,
 };
-export default ContactList;
