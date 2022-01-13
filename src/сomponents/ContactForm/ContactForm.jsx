@@ -25,11 +25,6 @@ export default function ContactForm({ onSubmit }) {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (name.trim() === "") {
-			return toast.error(" Please enter name!");
-		} else if (number.trim() === "") {
-			return toast.error(" Please enter number!");
-		}
 		onSubmit(name, number);
 		resetInput();
 	};
