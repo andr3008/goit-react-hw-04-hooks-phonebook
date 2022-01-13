@@ -1,7 +1,7 @@
 import { useState } from "react";
-import ContactForm from "./Components/ContactForm/ContactForm";
-import Filter from "./Components/Filter/Filter";
-import ContactList from "./Components/ContactList/ContactList";
+import ContactForm from "./сomponents/ContactForm/ContactForm";
+import Filter from "./сomponents/Filter/Filter";
+import ContactList from "./сomponents/ContactList/ContactList";
 import toast, { Toaster } from "react-hot-toast";
 import { nanoid } from "nanoid";
 import { Title, TitleContacts, Wrapper, P } from "./App.styled";
@@ -19,12 +19,12 @@ export default function App() {
 		};
 		if (
 			contacts.find(
-				(contact) =>
-					contact.name.toLowerCase() === name.toLowerCase() ||
-					contact.number === number
+				(contact) => contact.name.toLowerCase() === name.toLowerCase()
 			)
 		) {
 			toast.error(`${name} is already in contacts.`);
+		} else if (contacts.find((contact) => contact.number === number)) {
+			toast.error(`${number} is already in contacts.`);
 		} else {
 			setContacts((contacts) => [contact, ...contacts]);
 		}
