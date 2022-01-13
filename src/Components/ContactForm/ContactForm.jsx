@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import { Form, Label, Input, Button } from "./ContactForm.styled";
-
+import toast, { Toaster } from "react-hot-toast";
 export default function ContactForm({ onSubmit }) {
 	const [name, setName] = useState("");
 	const [number, setNumber] = useState("");
@@ -25,6 +25,11 @@ export default function ContactForm({ onSubmit }) {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if (name.trim() === "") {
+			return toast.error(" Please enter name!");
+		} else if (number.trim() === "") {
+			return toast.error(" Please enter number!");
+		}
 		onSubmit(name, number);
 		resetInput();
 	};
@@ -35,6 +40,7 @@ export default function ContactForm({ onSubmit }) {
 
 	return (
 		<Form onSubmit={handleSubmit}>
+			<Toaster />
 			<Label htmlFor={nameInputId}>
 				Name
 				<Input

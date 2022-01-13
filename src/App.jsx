@@ -5,7 +5,7 @@ import ContactList from "./Components/ContactList/ContactList";
 import toast, { Toaster } from "react-hot-toast";
 import { nanoid } from "nanoid";
 import { Title, TitleContacts, Wrapper, P } from "./App.styled";
-import useLocalStorage from "./Components/Hooks/useLocalStorage";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 export default function App() {
 	const [contacts, setContacts] = useLocalStorage("contacts", "");
@@ -19,7 +19,9 @@ export default function App() {
 		};
 		if (
 			contacts.find(
-				(contact) => contact.name === name || contact.number === number
+				(contact) =>
+					contact.name.toLowerCase() === name.toLowerCase() ||
+					contact.number === number
 			)
 		) {
 			toast.error(`${name} is already in contacts.`);
